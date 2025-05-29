@@ -10,7 +10,9 @@ import {
 
 import { getLevelBox } from '@/lib/api/metrics';
 import LevelMetricBox from '@/lib/schemas/level';
+import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
@@ -25,22 +27,32 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="dark:bg-primary flex h-screen w-screen flex-col items-center justify-start bg-gray-200">
-      <Card>
+    <div className="dark:bg-background flex h-screen w-screen flex-col items-center justify-start bg-gray-200">
+      <Card className="mt-2 flex flex-col bg-white/67 shadow-2xl backdrop-blur-xl">
         <CardHeader>
-          <CardTitle>Informações de Nivel de àgua</CardTitle>
+          <CardTitle className="text-sm font-light">
+            Informações de Nivel de àgua
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {' '}
           {/*imagem do nivel de àgua*/}
-          <div className="flex h-auto w-auto flex-col items-center justify-center space-y-4">
-            <span className="dark: text-7xl text-green-700">
-              {levelBox?.levelPercentage} %
+          <div className="flex flex-col items-center justify-center space-y-1">
+            <span className="dark: text-5xl text-green-400">
+              {levelBox?.levelPercentage}%
             </span>
-            <Image src={'/level-50.png'} alt="level" width={500} height={500} />
+            <Image src={'/level-50.png'} alt="level" width={200} height={200} />
           </div>
         </CardContent>
-        <CardFooter></CardFooter>
+        <CardFooter>
+          <Link href={'/'} className="flex w-full flex-row">
+            <div className="flex w-full flex-row items-center justify-center border">
+              {' '}
+              <ArrowLeft />
+              <span>voltar</span>
+            </div>
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   );
